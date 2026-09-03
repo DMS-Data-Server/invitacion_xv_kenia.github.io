@@ -490,85 +490,6 @@ h2 {
     width: 100%;
 }
 
-/* ========================= Galería ========================= */
-
-/*
- * Contenedor de la fotografía automática.
- * Centra una sola imagen dentro de la sección.
- */
-.gallery-grid {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin: 2.4rem 0;
-}
-
-/*
- * Marco de la fotografía principal.
- */
-.gallery-item {
-    position: relative;
-    width: min(520px, 100%);
-    aspect-ratio: 4 / 5;
-    overflow: hidden;
-    border: 1px solid rgba(183, 156, 255, 0.28);
-    border-radius: 22px;
-    background: var(--bg-secondary);
-    box-shadow: 0 18px 45px rgba(8, 5, 24, 0.28);
-    cursor: pointer;
-}
-
-    /*
- * Fotografía mostrada en pantalla.
- */
-    .gallery-item img {
-        display: block;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        opacity: 1;
-        transition: opacity 0.35s ease, transform 0.6s ease, filter 0.6s ease;
-    }
-
-        /*
- * Estado utilizado durante el cambio automático.
- */
-        .gallery-item img.changing {
-            opacity: 0;
-        }
-
-    /*
- * Ligero movimiento cuando se coloca el cursor
- * sobre la fotografía.
- */
-    .gallery-item:hover img {
-        transform: scale(1.025);
-        filter: saturate(1.06);
-    }
-
-/*
- * Indicador visual para señalar que la imagen
- * puede presionarse.
- */
-.gallery-featured::after {
-    content: "Ver galería";
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    padding: 8px 14px;
-    color: #ffffff;
-    background: rgba(16, 13, 36, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 999px;
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.67rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    backdrop-filter: blur(8px);
-    pointer-events: none;
-}
-
 /* ========================== Video ========================== */
 .video-wrapper {
     margin-top: 2.4rem;
@@ -678,6 +599,7 @@ h2 {
     margin-top: 1rem;
     color: var(--gold-light);
     line-height: 1.5;
+    white-space: pre-line;
 }
 
 .whatsapp-link {
@@ -734,47 +656,232 @@ footer {
     cursor: pointer;
 }
 
+/* ========================= Galería ========================= */
+
+/*
+ * Contenedor del carrusel automático.
+ * Muestra una sola fotografía centrada.
+ */
+.gallery-grid {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 2.4rem 0;
+}
+
+
+/*
+ * Marco uniforme para todas las fotografías
+ * del carrusel automático.
+ */
+.gallery-item {
+    position: relative;
+    width: min(520px, 100%);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid rgba(183, 156, 255, 0.28);
+    border-radius: 22px;
+    background: var(--bg-secondary);
+    box-shadow: 0 18px 45px rgba(8, 5, 24, 0.28);
+    cursor: pointer;
+}
+
+
+    /*
+ * Fotografía principal.
+ *
+ * cover permite llenar todo el marco del carrusel.
+ * Es normal que recorte ligeramente algunas imágenes.
+ */
+    .gallery-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 1;
+        transition: opacity 0.35s ease, transform 0.6s ease, filter 0.6s ease;
+    }
+
+
+        /*
+ * Transición utilizada cuando cambia la fotografía.
+ */
+        .gallery-item img.changing {
+            opacity: 0;
+        }
+
+
+    /*
+ * Efecto ligero al colocar el cursor.
+ */
+    .gallery-item:hover img {
+        transform: scale(1.025);
+        filter: saturate(1.06);
+    }
+
+
+/*
+ * Indicador para abrir la galería completa.
+ */
+.gallery-featured::after {
+    content: "Ver galería";
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    padding: 8px 14px;
+    color: #ffffff;
+    background: rgba(16, 13, 36, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.67rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+}
+
 /* ========================= Modal ========================= */
+
+/*
+ * Fondo del modal que cubre toda la pantalla.
+ */
 .gallery-modal {
     position: fixed;
     inset: 0;
-    z-index: 80;
+    z-index: 9999;
     display: none;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 4rem 1rem 2rem;
-    background: rgba(7,5,20,.96);
+    padding: 70px 16px 30px;
+    background: rgba(7, 5, 20, 0.97);
+    /*
+   * El desplazamiento se realiza sobre todo el modal.
+   */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
+
+    /*
+ * Estado visible del modal.
+ */
     .gallery-modal.open {
         display: flex;
     }
 
+
+/*
+ * Contenedor de todas las fotografías.
+ */
 .modal-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: .8rem;
-    width: min(980px, 100%);
-    max-height: 82vh;
-    overflow-y: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 14px;
+    width: min(1100px, 100%);
+    margin: 0 auto;
 }
 
+
+    /*
+ * Cada fotografía conserva la relación de aspecto
+ * original con la que fue subida.
+ */
     .modal-content img {
+        display: block;
         width: 100%;
-        height: 300px;
-        object-fit: cover;
+        height: auto;
+        max-width: 100%;
+        /*
+   * No recorta ni deforma la fotografía.
+   */
+        object-fit: contain;
+        object-position: center;
+        background: rgba(16, 13, 36, 0.9);
+        border: 1px solid rgba(183, 156, 255, 0.18);
         border-radius: 16px;
     }
 
+
+/*
+ * Botón para cerrar la galería.
+ *
+ * Se mantiene visible aunque el usuario
+ * se desplace hacia abajo.
+ */
 .modal-close {
-    position: absolute;
+    position: fixed;
     top: 16px;
     right: 22px;
-    color: white;
-    border: 0;
-    background: transparent;
-    font-size: 2.5rem;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    color: #ffffff;
+    background: rgba(16, 13, 36, 0.84);
+    border: 1px solid rgba(216, 181, 106, 0.5);
+    border-radius: 50%;
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    line-height: 1;
     cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: background-color 0.25s ease, transform 0.25s ease;
+}
+
+    .modal-close:hover {
+        background: rgba(183, 140, 255, 0.75);
+        transform: scale(1.05);
+    }
+
+/* ------------------------------------------------------------
+   MODAL EN TABLETAS
+------------------------------------------------------------ */
+
+@media (max-width: 860px) {
+    .modal-content {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* ------------------------------------------------------------
+   MODAL EN TELÉFONOS
+------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+    .gallery-modal {
+        padding: calc(68px + env(safe-area-inset-top)) 10px 24px;
+    }
+
+    /*
+   * Una fotografía por fila.
+   */
+    .modal-content {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        width: min(430px, 100%);
+    }
+
+        /*
+   * Mantiene el tamaño proporcional original.
+   */
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            border-radius: 14px;
+        }
+
+    .modal-close {
+        top: calc(12px + env(safe-area-inset-top));
+        right: 14px;
+    }
 }
 
 /* ======================= Animaciones ======================= */
@@ -814,13 +921,6 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /*
-   * La galería completa muestra dos fotos por fila
-   * dentro del modal.
-   */
-    .modal-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 
@@ -874,12 +974,12 @@ footer {
         }
 
     /*
-   * Las tarjetas y el contenido del modal
-   * se muestran en una sola columna.
+   * Las tarjetas se muestran en una sola columna.
+   * La responsividad del modal se controla en su
+   * propia sección para evitar reglas duplicadas.
    */
     .details-grid,
-    .gifts-grid,
-    .modal-content {
+    .gifts-grid {
         grid-template-columns: 1fr;
     }
 
@@ -890,13 +990,6 @@ footer {
         width: 100%;
         aspect-ratio: 4 / 5;
         border-radius: 18px;
-    }
-
-    /*
-   * Fotografías mostradas dentro del modal.
-   */
-    .modal-content img {
-        height: 330px;
     }
 
     /*
@@ -1054,14 +1147,29 @@ footer {
     min-height: 145px;
 }
 
-    .countdown-message strong {
-        font-size: clamp(2.4rem, 7vw, 4.8rem);
-        color: var(--primary-light);
-    }
+.countdown-message strong {
+    font-size: clamp(2.4rem, 7vw, 4.8rem);
+    color: var(--primary-light);
+}
 
-    .countdown-message span {
-        margin-top: 8px;
+.countdown-message span {
+    margin-top: 8px;
+    color: var(--gold);
+    font-size: 0.76rem;
+    letter-spacing: 0.22em;
+}
+
+/*
+ * Enlace de StudioICrea en el pie de página.
+ */
+.footer-brand {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+    .footer-brand:hover,
+    .footer-brand:focus-visible {
         color: var(--gold);
-        font-size: 0.76rem;
-        letter-spacing: 0.22em;
+        text-decoration: underline;
     }

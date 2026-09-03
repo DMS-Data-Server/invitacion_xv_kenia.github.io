@@ -138,7 +138,7 @@ window.EVENT_CONFIG = {
          * false:
          * Envía confirmaciones y firmas a Apps Script.
          */
-        modoDemostracion: true
+        modoDemostracion: false
     },
 
     /* ----------------------------------------------------------
@@ -168,10 +168,10 @@ window.EVENT_CONFIG = {
        API DE GOOGLE APPS SCRIPT
     ---------------------------------------------------------- */
 
-    /**
-     * Déjala vacía mientras desarrollas la invitación.
-     *
-     * Posteriormente colocaremos aquí la URL /exec.
+    /*
+     * URL pública de la API de Google Apps Script.
+     * Debe terminar en /exec.
      */
-    appsScriptUrl: ""
+        appsScriptUrl:
+            "https://script.google.com/macros/s/AKfycbxV1Yo-e30FBcYUCuEFKidIrkjQJTtk-BD9WsYnzGdFrTWel77HIewDZ1QpS3mcmJXT/exec"
 };

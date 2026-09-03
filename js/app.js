@@ -49,6 +49,104 @@ function setButtonLoading(button, loading, loadingText) {
 }
 
 /* ------------------------------------------------------------
+   CONTROL DE CONFIRMACIÓN POR NAVEGADOR
+------------------------------------------------------------ */
+
+/**
+ * Clave utilizada en localStorage.
+ *
+ * Incluye el ID del evento para que cada invitación mantenga
+ * su propio registro y no interfiera con futuros clientes.
+ */
+const RSVP_STORAGE_KEY =
+  `studioicrea_confirmacion_${config.eventoId}`;
+
+
+/**
+ * Revisa si este navegador ya registró una confirmación.
+ *
+ * @returns {boolean}
+ */
+function browserAlreadyConfirmed() {
+  try {
+    return localStorage.getItem(RSVP_STORAGE_KEY) !== null;
+  } catch (error) {
+    /*
+     * Algunos navegadores pueden bloquear localStorage.
+     * En ese caso se permite continuar con el formulario.
+     */
+    console.info(
+      "No fue posible consultar el almacenamiento del navegador.",
+      error
+    );
+
+    return false;
+  }
+}
+
+
+/**
+ * Guarda la marca local después de que Apps Script confirma
+ * que la asistencia fue registrada correctamente.
+ */
+function saveBrowserConfirmation() {
+  try {
+    localStorage.setItem(
+      RSVP_STORAGE_KEY,
+      JSON.stringify({
+        confirmed: true,
+        eventId: config.eventoId,
+        registeredAt: new Date().toISOString()
+      })
+    );
+
+    return true;
+  } catch (error) {
+    console.info(
+      "No fue posible guardar la confirmación en el navegador.",
+      error
+    );
+
+    return false;
+  }
+}
+
+
+/**
+ * Oculta el formulario cuando el navegador ya confirmó.
+ *
+ * El botón independiente de WhatsApp permanece visible para
+ * que el invitado pueda solicitar una corrección.
+ */
+function applyBrowserConfirmationLock() {
+  if (!browserAlreadyConfirmed()) return;
+
+  const form = $("#rsvpForm");
+
+  if (form) {
+    form.hidden = true;
+  }
+
+  const companionsGroup = $("#companionsGroup");
+
+  if (companionsGroup) {
+    companionsGroup.hidden = true;
+  }
+
+  showStatus(
+    "#rsvpStatus",
+    "Tu confirmación ya fue registrada. \nSi necesitas corregirla, comunícate por WhatsApp."
+  );
+
+  /*
+   * Muestra el contacto para solicitar correcciones.
+   * Este botón pertenece al módulo de asistencia y no al
+   * módulo independiente de confirmación por WhatsApp.
+   */
+  setVisible("#rsvpWhatsappButton", true);
+}
+
+/* ------------------------------------------------------------
    Carga de información del evento
 ------------------------------------------------------------ */
 function loadEventData() {
@@ -88,9 +186,26 @@ function loadEventData() {
   const mapsButton = $("#mapsButton");
   mapsButton.href = config.evento.googleMaps;
 
-  const whatsappMessage = encodeURIComponent(config.contacto.mensajeConfirmacion);
-  $("#whatsappButton").href =
+  const whatsappMessage = encodeURIComponent(
+    config.contacto.mensajeConfirmacion
+  );
+
+  const whatsappUrl =
     `https://wa.me/${config.contacto.whatsapp}?text=${whatsappMessage}`;
+
+  /* Botón del módulo independiente de WhatsApp. */
+  const whatsappButton = $("#whatsappButton");
+
+  if (whatsappButton) {
+    whatsappButton.href = whatsappUrl;
+  }
+
+  /* Botón para corregir una asistencia ya registrada. */
+  const rsvpWhatsappButton = $("#rsvpWhatsappButton");
+
+  if (rsvpWhatsappButton) {
+    rsvpWhatsappButton.href = whatsappUrl;
+  }
 
   const musicEnabled = Boolean(
     config.addons.mostrarMusica && config.multimedia.musica
@@ -132,14 +247,25 @@ function loadEventData() {
   setVisible("#giftsSection", giftsEnabled);
   if (giftsEnabled) createGiftCards();
 
-  setVisible(
-    "#confirmationSection",
+  const confirmationEnabled = Boolean(
     config.addons.mostrarConfirmacion
   );
 
   setVisible(
-      "#whatsappSection",
-      config.addons.mostrarWhatsapp
+    "#confirmationSection",
+    confirmationEnabled
+  );
+
+  /*
+   * El módulo de WhatsApp es independiente del módulo de
+   * confirmación mediante Google Sheets.
+   *
+   * Cada uno se activa o desactiva exclusivamente desde su
+   * propia opción dentro de config.addons.
+   */
+  setVisible(
+    "#whatsappSection",
+    Boolean(config.addons.mostrarWhatsapp)
   );
 
   setVisible(
@@ -1046,6 +1172,26 @@ $("#rsvpForm").addEventListener("submit", async (event) => {
         );
 
         /*
+         * El bloqueo se guarda únicamente después de una
+         * confirmación real aceptada por Apps Script.
+         * En modo demostración el formulario podrá probarse
+         * varias veces.
+         */
+        if (!result.demo) {
+            const confirmationSaved = saveBrowserConfirmation();
+
+            /*
+             * Aunque localStorage no esté disponible, permite
+             * contactar por WhatsApp después de guardar.
+             */
+            setVisible("#rsvpWhatsappButton", true);
+
+            if (confirmationSaved) {
+                applyBrowserConfirmationLock();
+            }
+        }
+
+        /*
          * Limpia el formulario después de enviarlo.
          */
         $("#rsvpForm").reset();
@@ -1141,6 +1287,12 @@ loadEventData();
  * Asistentes, Adultos y Niños.
  */
 createAttendeesOptions();
+
+/*
+ * Si este navegador ya confirmó anteriormente,
+ * oculta el formulario desde el inicio.
+ */
+applyBrowserConfirmationLock();
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
