@@ -43,20 +43,20 @@ window.EVENT_CONFIG = {
 
     evento: {
         fechaISO: "2026-10-10T19:00:00-06:00",
-        fechaTexto: "10 de octubre de 2026",
-        diaTexto: "Sábado",
+        fechaTexto: "11 de octubre de 2026",
+        diaTexto: "Domingo",
         horaTexto: "7:00 p. m.",
 
-        salon: "FLORESTA EVENTOS",
+        salon: "SANTA MARÍA CENTRO SOCIAL",
 
         direccion:
-            "Carretera Reynosa #2200, Hacienda La Trinidad, 67196 Guadalupe, N.L.",
+            "Av Sta Rosa de Lima 1451, Santa María, 67190 Guadalupe, N.L.",
 
         googleMaps:
-            "https://maps.app.goo.gl/u2HesPtq5oKrwJZA8",
+            "https://maps.app.goo.gl/qpaAEeU4cw3z1Xem7",
 
         fechaLimiteConfirmacion:
-            "3 de octubre de 2026",
+            "4 de octubre de 2026",
 
         codigoVestimenta: "Formal",
 
