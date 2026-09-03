@@ -1,0 +1,1067 @@
+/* ==========================================================
+   TEMA: LILAC DREAMS
+   Paleta:
+   - Azul noche:       #100D24
+   - Morado profundo:  #211A42
+   - Lila principal:   #B79CFF
+   - Lavanda clara:    #DED2FF
+   - Oro champagne:    #D8B56A
+   - Marfil:           #FBF8FF
+   ========================================================== */
+
+:root {
+    --bg-primary: #100D24;
+    --bg-secondary: #211A42;
+    --bg-soft: #F3EEFF;
+    --primary: #B79CFF;
+    --primary-dark: #8E6FE6;
+    --primary-light: #DED2FF;
+    --gold: #D8B56A;
+    --gold-light: #F0D79C;
+    --text-light: #FBF8FF;
+    --text-muted: #D5CFE4;
+    --text-dark: #342E48;
+    --glass: rgba(255, 255, 255, 0.075);
+    --glass-border: rgba(222, 210, 255, 0.24);
+    --shadow-lilac: rgba(183, 156, 255, 0.32);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mantiene ocultos los módulos deshabilitados desde config.js. */
+[hidden] {
+    display: none !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-width: 320px;
+    font-family: "Montserrat", sans-serif;
+    color: var(--text-light);
+    background: radial-gradient(circle at 15% 20%, rgba(183, 156, 255, 0.16), transparent 30%), radial-gradient(circle at 85% 35%, rgba(216, 181, 106, 0.09), transparent 25%), var(--bg-primary);
+    overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+img,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+/* Fondo de estrellas lilas y doradas */
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.32;
+    background-image: radial-gradient(circle, rgba(255,255,255,.86) 1px, transparent 1.5px), radial-gradient(circle, rgba(183,156,255,.85) 1px, transparent 1.6px), radial-gradient(circle, rgba(216,181,106,.6) 1px, transparent 1.5px);
+    background-size: 90px 90px, 135px 135px, 180px 180px;
+    background-position: 0 0, 35px 55px, 80px 20px;
+}
+
+/* ===================== Pantalla de apertura ===================== */
+.welcome-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 1.25rem;
+    /**
+    * Fondo sólido de respaldo.
+    * Evita que se vea el contenido de la invitación detrás.
+    */
+    background-color: var(--bg-primary);
+    /**
+    * Imagen de portada con capa oscura.
+    */
+    background-image: linear-gradient( rgba(16, 13, 36, 0.76), rgba(16, 13, 36, 0.94) ), url("../assets/images/hero.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: opacity .8s ease, visibility .8s ease;
+}
+
+.welcome-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.welcome-card {
+    width: min(480px, 100%);
+    padding: 3rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(240, 215, 156, 0.45);
+    background: rgba(16, 13, 36, 0.72);
+    backdrop-filter: blur(14px);
+    border-radius: 28px;
+}
+
+.welcome-crown {
+    color: var(--gold-light);
+    font-size: 3rem;
+}
+
+.welcome-small {
+    margin-top: .7rem;
+    color: var(--primary-light);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+}
+
+.welcome-card h1 {
+    margin: .5rem 0;
+    color: var(--primary-light);
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(4.5rem, 15vw, 7rem);
+    font-weight: 400;
+}
+
+.welcome-message {
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.4rem;
+}
+
+/* ========================= Portada ========================= */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(216,181,106,.28);
+}
+
+.hero-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("../assets/images/hero.jpg");
+    background-position: 68% center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: saturate(.82) hue-rotate(12deg) contrast(1.04);
+    transform: scale(1);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(16,13,36,.96) 0%, rgba(24,18,52,.82) 38%, rgba(16,13,36,.16) 74%), linear-gradient(180deg, rgba(16,13,36,.05), rgba(16,13,36,.50) 78%, var(--bg-primary) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(680px, 94%);
+    padding: 8vh 1.5rem 4rem;
+    text-align: center;
+}
+
+.crown {
+    color: var(--gold-light);
+    font-size: 3.2rem;
+}
+
+.hero-small {
+    color: var(--gold-light);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 2rem;
+}
+
+.hero-xv {
+    color: var(--primary-light);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(7rem, 21vw, 12rem);
+    line-height: .74;
+    text-shadow: 0 0 28px var(--shadow-lilac);
+}
+
+.hero-years {
+    margin-left: .38em;
+    color: var(--gold);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.3rem;
+    letter-spacing: .38em;
+}
+
+.hero-content h1 {
+    margin-top: .5rem;
+    color: var(--primary);
+    font-family: "Great Vibes", cursive;
+    font-size: clamp(5rem, 15vw, 8.8rem);
+    font-weight: 400;
+    line-height: 1;
+    text-shadow: 0 0 24px rgba(183,156,255,.24);
+}
+
+.hero-message {
+    max-width: 510px;
+    margin: .8rem auto 0;
+    color: var(--gold-light);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.55rem;
+    line-height: 1.35;
+}
+
+.ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    width: min(260px, 85%);
+    margin: 1.6rem auto;
+    color: var(--gold);
+}
+
+    .ornament span {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+        .ornament span:last-child {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+    .ornament i {
+        font-size: .6rem;
+        font-style: normal;
+    }
+
+.scroll-button {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    color: var(--primary-light);
+    border: 1px solid var(--primary);
+    border-radius: 50%;
+    text-decoration: none;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* ========================= Secciones ========================= */
+.section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 1.25rem;
+    text-align: center;
+}
+
+.container {
+    width: min(1120px, 100%);
+    margin: 0 auto;
+}
+
+.narrow {
+    max-width: 760px;
+}
+
+.intro-section,
+.event-section,
+.video-section,
+.gifts-section {
+    color: var(--text-dark);
+    background: radial-gradient(circle at 50% 0%, rgba(183,156,255,.16), transparent 34%), var(--bg-soft);
+}
+
+.dark-section,
+.gallery-section,
+.confirmation-section,
+.guestbook-section,
+.closing-section {
+    background: radial-gradient(circle at 15% 20%, rgba(183,156,255,.12), transparent 28%), linear-gradient(180deg, var(--bg-secondary), var(--bg-primary));
+}
+
+.section-label {
+    margin-bottom: 1rem;
+    color: var(--gold);
+    font-size: .85rem;
+    letter-spacing: .25em;
+}
+
+h2 {
+    color: var(--primary-dark);
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.7rem, 7vw, 4.8rem);
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.dark-section h2,
+.gallery-section h2,
+.confirmation-section h2,
+.guestbook-section h2,
+.closing-section h2 {
+    color: var(--primary-light);
+}
+
+.small-divider {
+    width: 60px;
+    height: 1px;
+    margin: 1.8rem auto;
+    background: var(--gold);
+}
+
+.intro-text,
+.section-description {
+    color: #716888;
+    line-height: 1.9;
+}
+
+.intro-text {
+    white-space: pre-line;
+}
+
+.signature {
+    margin-top: 1.6rem;
+    color: var(--primary-dark);
+    font-family: "Great Vibes", cursive;
+    font-size: 3.8rem;
+}
+
+    .signature.large {
+        color: var(--primary);
+        font-size: clamp(4.5rem, 14vw, 7rem);
+    }
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .9rem;
+    color: var(--gold-light);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+    letter-spacing: .16em;
+}
+
+    .section-heading span {
+        width: 80px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold));
+    }
+
+        .section-heading span:last-child {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+/* ===================== Cuenta regresiva ===================== */
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    width: min(800px, 100%);
+    margin: 2.5rem auto 0;
+}
+
+    .countdown article {
+        padding: 1.7rem .5rem;
+        border: 1px solid rgba(222,210,255,.25);
+        border-radius: 24px;
+        background: rgba(255,255,255,.035);
+        backdrop-filter: blur(9px);
+    }
+
+    .countdown strong {
+        display: block;
+        color: var(--primary);
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3rem, 8vw, 5.2rem);
+        font-weight: 400;
+    }
+
+    .countdown span {
+        color: var(--gold-light);
+        font-size: .7rem;
+        letter-spacing: .15em;
+    }
+
+/* ========================= Tarjetas ========================= */
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 3.2rem 0;
+}
+
+.glass-card {
+    min-height: 235px;
+    padding: 2rem 1.2rem;
+    border: 1px solid rgba(142,111,230,.22);
+    border-radius: 24px;
+    background: rgba(255,255,255,.54);
+    box-shadow: 0 16px 40px rgba(54,42,96,.08);
+}
+
+.card-icon {
+    color: var(--gold);
+    font-size: 2.2rem;
+}
+
+.glass-card h3 {
+    margin: .9rem 0 .5rem;
+    color: var(--primary-dark);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.8rem;
+}
+
+.glass-card p {
+    color: var(--text-dark);
+    line-height: 1.55;
+}
+
+.glass-card span {
+    display: block;
+    margin-top: .5rem;
+    color: #7C728F;
+    font-size: .8rem;
+    line-height: 1.5;
+}
+
+/* ========================= Botones ========================= */
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .9rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 1rem 1.8rem;
+    border: 0;
+    border-radius: 999px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-size: .76rem;
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+    .button:hover {
+        transform: translateY(-2px);
+    }
+
+.button-primary {
+    color: white;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    box-shadow: 0 12px 30px rgba(142,111,230,.30);
+}
+
+.button-soft {
+    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--gold-light), var(--primary-light));
+}
+
+.button-outline {
+    color: var(--primary-dark);
+    border: 1px solid var(--primary-dark);
+    background: transparent;
+}
+
+.gallery-section .button-outline {
+    color: var(--primary-light);
+    border-color: var(--primary);
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* ========================= Galería ========================= */
+
+/*
+ * Contenedor de la fotografía automática.
+ * Centra una sola imagen dentro de la sección.
+ */
+.gallery-grid {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 2.4rem 0;
+}
+
+/*
+ * Marco de la fotografía principal.
+ */
+.gallery-item {
+    position: relative;
+    width: min(520px, 100%);
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border: 1px solid rgba(183, 156, 255, 0.28);
+    border-radius: 22px;
+    background: var(--bg-secondary);
+    box-shadow: 0 18px 45px rgba(8, 5, 24, 0.28);
+    cursor: pointer;
+}
+
+    /*
+ * Fotografía mostrada en pantalla.
+ */
+    .gallery-item img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 1;
+        transition: opacity 0.35s ease, transform 0.6s ease, filter 0.6s ease;
+    }
+
+        /*
+ * Estado utilizado durante el cambio automático.
+ */
+        .gallery-item img.changing {
+            opacity: 0;
+        }
+
+    /*
+ * Ligero movimiento cuando se coloca el cursor
+ * sobre la fotografía.
+ */
+    .gallery-item:hover img {
+        transform: scale(1.025);
+        filter: saturate(1.06);
+    }
+
+/*
+ * Indicador visual para señalar que la imagen
+ * puede presionarse.
+ */
+.gallery-featured::after {
+    content: "Ver galería";
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    padding: 8px 14px;
+    color: #ffffff;
+    background: rgba(16, 13, 36, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.67rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    pointer-events: none;
+}
+
+/* ========================== Video ========================== */
+.video-wrapper {
+    margin-top: 2.4rem;
+    overflow: hidden;
+    border: 1px solid rgba(142,111,230,.28);
+    border-radius: 28px;
+    background: #160F2E;
+    box-shadow: 0 18px 45px rgba(66,46,120,.13);
+}
+
+    .video-wrapper video {
+        width: 100%;
+        max-height: 520px;
+    }
+
+/* ====================== Mesa de regalos ====================== */
+.gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    width: min(800px, 100%);
+    margin: 2.5rem auto 0;
+}
+
+.gift-card {
+    padding: 2rem;
+    border: 1px solid rgba(142,111,230,.22);
+    border-radius: 24px;
+    background: rgba(255,255,255,.60);
+}
+
+    .gift-card h3 {
+        color: var(--primary-dark);
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.8rem;
+    }
+
+    .gift-card p {
+        margin: .7rem 0 1.2rem;
+        color: #716888;
+        line-height: 1.6;
+    }
+
+/* ========================== Formularios ========================== */
+.rsvp-form,
+.guestbook-form {
+    display: grid;
+    gap: .45rem;
+    margin-top: 2.2rem;
+    padding: 1.5rem;
+    text-align: left;
+    border: 1px solid var(--glass-border);
+    border-radius: 25px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+}
+
+    .rsvp-form label,
+    .guestbook-form label {
+        color: var(--primary-light);
+        font-size: .86rem;
+        line-height: 1.5;
+    }
+
+    /* Separa visualmente cada campo cuando label e input son hermanos. */
+    .rsvp-form > label:not(:first-child),
+    .guestbook-form > label:not(:first-child),
+    #companionsGroup {
+        margin-top: .55rem;
+    }
+
+#companionsGroup {
+    display: grid;
+    gap: .45rem;
+}
+
+.rsvp-form input,
+.rsvp-form select,
+.rsvp-form textarea,
+.guestbook-form input,
+.guestbook-form textarea {
+    width: 100%;
+    margin-top: 0;
+    padding: .9rem 1rem;
+    color: var(--text-light);
+    border: 1px solid rgba(222,210,255,.25);
+    border-radius: 14px;
+    outline: none;
+    background: rgba(255,255,255,.075);
+}
+
+    .rsvp-form input:focus,
+    .rsvp-form select:focus,
+    .rsvp-form textarea:focus,
+    .guestbook-form input:focus,
+    .guestbook-form textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(183,156,255,.12);
+    }
+
+.rsvp-form option {
+    color: #2D2443;
+}
+
+.form-status {
+    min-height: 1.5rem;
+    margin-top: 1rem;
+    color: var(--gold-light);
+    line-height: 1.5;
+}
+
+.whatsapp-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary-light);
+}
+
+/* ========================== Cierre ========================== */
+.closing-small {
+    color: var(--gold-light);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+}
+
+.closing-sparkle {
+    margin-top: 1rem;
+    color: var(--gold);
+    font-size: 2rem;
+}
+
+/* =========================== Footer =========================== */
+footer {
+    position: relative;
+    z-index: 1;
+    padding: 1.8rem 1rem;
+    text-align: center;
+    color: #A9A0BA;
+    border-top: 1px solid rgba(216,181,106,.18);
+    background: #090719;
+    font-size: .75rem;
+    line-height: 1.8;
+}
+
+    footer p {
+        color: var(--primary-light);
+        letter-spacing: .15em;
+        text-transform: uppercase;
+    }
+
+/* ======================= Botón de música ======================= */
+.music-button {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 50;
+    width: 48px;
+    height: 48px;
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    background: rgba(16,13,36,.82);
+    backdrop-filter: blur(9px);
+    cursor: pointer;
+}
+
+/* ========================= Modal ========================= */
+.gallery-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem 2rem;
+    background: rgba(7,5,20,.96);
+}
+
+    .gallery-modal.open {
+        display: flex;
+    }
+
+.modal-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .8rem;
+    width: min(980px, 100%);
+    max-height: 82vh;
+    overflow-y: auto;
+}
+
+    .modal-content img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 22px;
+    color: white;
+    border: 0;
+    background: transparent;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+/* ======================= Animaciones ======================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .85s ease, transform .85s ease;
+}
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+/* ======================= Responsividad ======================= */
+
+/* ------------------------------------------------------------
+   TABLETAS
+------------------------------------------------------------ */
+@media (max-width: 860px) {
+
+    /*
+   * Las tarjetas de información se organizan
+   * en dos columnas.
+   */
+    .details-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /*
+   * La galería completa muestra dos fotos por fila
+   * dentro del modal.
+   */
+    .modal-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* ------------------------------------------------------------
+   TELÉFONOS
+------------------------------------------------------------ */
+@media (max-width: 600px) {
+
+   /*
+   * Ajusta el espacio de las secciones.
+   */
+    .section {
+        padding: 4.5rem 1rem;
+    }
+
+    /*
+   * Ajusta el contenido de la portada.
+   */
+    .hero-content {
+        width: 100%;
+        padding-top: 9vh;
+        background: linear-gradient( 90deg, rgba(16, 13, 36, 0.76), rgba(16, 13, 36, 0.25) );
+    }
+
+    /*
+   * Ajusta la posición de la imagen de portada.
+   */
+    .hero-image {
+        background-position: 65% center;
+    }
+
+    /*
+   * Ajustes de la cuenta regresiva.
+   */
+    .countdown {
+        gap: 0.45rem;
+    }
+
+        .countdown article {
+            padding: 1.25rem 0.2rem;
+            border-radius: 16px;
+        }
+
+        .countdown strong {
+            font-size: 2.65rem;
+        }
+
+        .countdown span {
+            font-size: 0.56rem;
+            letter-spacing: 0.07em;
+        }
+
+    /*
+   * Las tarjetas y el contenido del modal
+   * se muestran en una sola columna.
+   */
+    .details-grid,
+    .gifts-grid,
+    .modal-content {
+        grid-template-columns: 1fr;
+    }
+
+    /*
+   * Fotografía automática principal.
+   */
+    .gallery-item {
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        border-radius: 18px;
+    }
+
+    /*
+   * Fotografías mostradas dentro del modal.
+   */
+    .modal-content img {
+        height: 330px;
+    }
+
+    /*
+   * Botones de ubicación y calendario.
+   */
+    .button-row {
+        flex-direction: column;
+    }
+
+        .button-row .button {
+            width: 100%;
+        }
+}
+
+/* ============================================================
+   DISTRIBUCIÓN DE ASISTENTES
+============================================================ */
+
+.attendees-group {
+    display: grid;
+    gap: 12px;
+}
+
+    /*
+ * Cuando JavaScript coloca el atributo hidden,
+ * el bloque debe desaparecer completamente.
+ */
+    .attendees-group[hidden] {
+        display: none;
+    }
+
+/*
+ * Coloca Adultos y Niños en dos columnas.
+ */
+.attendees-distribution {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+    /*
+ * Cada etiqueta contiene su propio selector.
+ */
+    .attendees-distribution label {
+        display: grid;
+        gap: 8px;
+    }
+
+/*
+ * Texto que confirma la suma seleccionada.
+ */
+.attendees-summary {
+    margin: 2px 0 8px;
+    padding: 12px 16px;
+    color: #d9c9ff;
+    background: rgba(183, 140, 255, 0.09);
+    border: 1px solid rgba(183, 140, 255, 0.28);
+    border-radius: 12px;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/*
+ * En pantallas muy pequeñas, Adultos y Niños
+ * se colocan uno debajo del otro.
+ */
+@media (max-width: 420px) {
+    .attendees-distribution {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================================
+   MÓDULO INDEPENDIENTE DE WHATSAPP
+============================================================ */
+
+.whatsapp-section {
+    text-align: center;
+    background: radial-gradient( circle at center, rgba(183, 140, 255, 0.12), transparent 65% ), #100d24;
+}
+
+/*
+ * Botón grande, del mismo ancho y altura visual
+ * que el botón de Confirmar asistencia.
+ */
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    margin-top: 24px;
+    padding: 15px 24px;
+    color: #ffffff;
+    background: #25d366;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.86rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.22);
+    transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .whatsapp-button:hover {
+        color: #ffffff;
+        background: #1fbd5a;
+        transform: translateY(-2px);
+        box-shadow: 0 16px 34px rgba(37, 211, 102, 0.32);
+    }
+
+    .whatsapp-button:active {
+        transform: translateY(0);
+    }
+
+.whatsapp-icon {
+    flex: 0 0 auto;
+    width: 25px;
+    height: 25px;
+}
+
+/*
+ * Ajuste para celulares pequeños.
+ */
+@media (max-width: 480px) {
+    .whatsapp-button {
+        min-height: 54px;
+        padding: 14px 18px;
+        font-size: 0.78rem;
+        letter-spacing: 0.035em;
+    }
+
+    .whatsapp-icon {
+        width: 23px;
+        height: 23px;
+    }
+}
+
+/* ============================================================
+   MENSAJES DEL CONTADOR
+============================================================ */
+
+.countdown-message {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 145px;
+}
+
+    .countdown-message strong {
+        font-size: clamp(2.4rem, 7vw, 4.8rem);
+        color: var(--primary-light);
+    }
+
+    .countdown-message span {
+        margin-top: 8px;
+        color: var(--gold);
+        font-size: 0.76rem;
+        letter-spacing: 0.22em;
+    }

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =====================================================
+         CONFIGURACIÓN GENERAL DEL DOCUMENTO
+         ===================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#100D24">
+
+    <!-- app.js actualizará la descripción con el nombre -->
+    <meta id="metaDescription"
+          name="description"
+          content="Invitación digital de XV años de Kenia">
+
+    <!-- app.js actualizará dinámicamente este título -->
+    <title>Mis XV Kenia | Lilac Dreams</title>
+
+    <!-- =====================================================
+         FUENTES DE GOOGLE
+         ===================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+          rel="stylesheet">
+
+    <!-- =========================================================
+         VISTA PREVIA AL COMPARTIR
+
+         Estas etiquetas permiten que WhatsApp, Facebook y otras
+         aplicaciones reconozcan el título, descripción e imagen.
+    ========================================================== -->
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:title"
+          content="Mis XV Años | Kenia">
+
+    <meta property="og:description"
+          content="Te invito a celebrar este día tan especial.">
+
+    <meta property="og:url"
+          content="https://TU-USUARIO.github.io/TU-REPOSITORIO/">
+
+    <meta property="og:image"
+          content="https://TU-USUARIO.github.io/TU-REPOSITORIO/assets/images/share-preview.jpg">
+
+    <meta property="og:image:secure_url"
+          content="https://TU-USUARIO.github.io/TU-REPOSITORIO/assets/images/share-preview.jpg">
+
+    <meta property="og:image:type"
+          content="image/jpeg">
+
+    <meta property="og:image:width"
+          content="1200">
+
+    <meta property="og:image:height"
+          content="630">
+
+    <!-- Icono general del navegador -->
+    <link rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="assets/images/favicon-32.png">
+
+    <!-- Icono para pestañas y accesos directos -->
+    <link rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="assets/images/favicon-192.png">
+
+    <!-- Icono cuando se guarda en la pantalla de inicio del iPhone -->
+    <link rel="apple-touch-icon"
+          sizes="180x180"
+          href="assets/images/apple-touch-icon.png">
+
+    <!-- =====================================================
+         HOJA DE ESTILOS
+         ===================================================== -->
+
+    <link rel="stylesheet"
+          href="css/styles.css">
+</head>
+
+<body>
+    <!-- =====================================================
+         PANTALLA DE APERTURA
+         La interacción del usuario permite iniciar la música.
+         ===================================================== -->
+
+    <div class="welcome-screen"
+         id="welcomeScreen">
+        <div class="welcome-card">
+            <span class="welcome-crown"
+                  aria-hidden="true">
+                ♕
+            </span>
+
+            <p class="welcome-small">
+                Mis XV años
+            </p>
+
+            <h1 id="welcomeName">
+                Kenia
+            </h1>
+
+            <p class="welcome-message">
+                Una noche llena de sueños y magia
+            </p>
+
+            <button class="button button-primary"
+                    id="openInvitation"
+                    type="button">
+                Abrir invitación
+            </button>
+        </div>
+    </div>
+
+    <!-- Fondo decorativo -->
+    <div class="particles"
+         aria-hidden="true"></div>
+
+    <!-- =====================================================
+         CONTROL DE MÚSICA
+         Puede ocultarse desde config.js.
+         ===================================================== -->
+
+    <button class="music-button"
+            id="musicButton"
+            type="button"
+            aria-label="Reproducir música">
+        ♪
+    </button>
+
+    <audio id="backgroundMusic"
+           loop
+           preload="none">
+        <source id="musicSource"
+                src="assets/audio/music.mp3"
+                type="audio/mpeg">
+    </audio>
+
+    <!-- =====================================================
+         PORTADA PRINCIPAL
+         ===================================================== -->
+
+    <header class="hero">
+        <!-- Imagen configurada mediante CSS y app.js -->
+        <div class="hero-image"></div>
+
+        <!-- Capas decorativas -->
+        <div class="hero-overlay"></div>
+
+        <div class="floral-corner floral-left"
+             aria-hidden="true"></div>
+
+        <div class="floral-corner floral-right"
+             aria-hidden="true"></div>
+
+        <div class="hero-content reveal">
+            <div class="crown"
+                 aria-hidden="true">
+                ♕
+            </div>
+
+            <p class="hero-small">
+                Mis
+            </p>
+
+            <div class="hero-xv">
+                XV
+            </div>
+
+            <p class="hero-years">
+                AÑOS
+            </p>
+
+            <h1 id="heroName">
+                Kenia
+            </h1>
+
+            <p class="hero-message"
+               id="heroMessage">
+                Te invito a celebrar este día tan especial
+            </p>
+
+            <div class="ornament"
+                 aria-hidden="true">
+                <span></span>
+                <i>◆</i>
+                <span></span>
+            </div>
+
+            <a href="#countdownSection"
+               class="scroll-button"
+               aria-label="Continuar hacia la cuenta regresiva">
+                ↓
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <!-- ===================================================
+     MENSAJE PRINCIPAL
+     =================================================== -->
+
+        <section class="section intro-section">
+            <div class="container narrow reveal">
+                <p class="section-label">
+                    UNA NOCHE INOLVIDABLE
+                </p>
+
+                <h2>
+                    Un sueño vestido de lila
+                </h2>
+
+                <div class="small-divider"
+                     aria-hidden="true"></div>
+
+                <!-- El texto se obtiene desde config.js -->
+                <p class="intro-text"
+                   id="mainMessage"></p>
+
+                <p class="signature"
+                   id="signatureName">
+                    Kenia
+                </p>
+            </div>
+        </section>
+
+        <!-- ===================================================
+     CUENTA REGRESIVA
+     =================================================== -->
+
+        <section class="section dark-section"
+                 id="countdownSection">
+            <div class="container reveal">
+                <div class="section-heading">
+                    <span></span>
+                    <p>FALTAN</p>
+                    <span></span>
+                </div>
+
+                <div class="countdown"
+                     aria-live="polite">
+                    <article>
+                        <strong id="days">00</strong>
+                        <span>DÍAS</span>
+                    </article>
+
+                    <article>
+                        <strong id="hours">00</strong>
+                        <span>HORAS</span>
+                    </article>
+
+                    <article>
+                        <strong id="minutes">00</strong>
+                        <span>MINUTOS</span>
+                    </article>
+
+                    <article>
+                        <strong id="seconds">00</strong>
+                        <span>SEGUNDOS</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+     INFORMACIÓN DEL EVENTO
+     =================================================== -->
+
+        <section class="section event-section">
+            <div class="container reveal">
+                <p class="section-label">
+                    DETALLES DEL EVENTO
+                </p>
+
+                <h2>
+                    Te esperamos
+                </h2>
+
+                <div class="details-grid">
+                    <!-- Fecha -->
+                    <article class="glass-card">
+                        <div class="card-icon"
+                             aria-hidden="true">
+                            ◇
+                        </div>
+
+                        <h3>Fecha</h3>
+
+                        <p id="eventDateText"></p>
+                        <span id="eventDayText"></span>
+                    </article>
+
+                    <!-- Hora -->
+                    <article class="glass-card">
+                        <div class="card-icon"
+                             aria-hidden="true">
+                            ◷
+                        </div>
+
+                        <h3>Hora</h3>
+
+                        <p id="eventTimeText"></p>
+                        <span>Recepción</span>
+                    </article>
+
+                    <!-- Lugar -->
+                    <article class="glass-card">
+                        <div class="card-icon"
+                             aria-hidden="true">
+                            ⌖
+                        </div>
+
+                        <h3>Lugar</h3>
+
+                        <p id="eventVenue"></p>
+                        <span id="eventAddress"></span>
+                    </article>
+
+                    <!-- Vestimenta -->
+                    <article class="glass-card">
+                        <div class="card-icon"
+                             aria-hidden="true">
+                            ♢
+                        </div>
+
+                        <h3>Vestimenta</h3>
+
+                        <p id="dressCode"></p>
+                        <span id="dressRecommendation"></span>
+                    </article>
+                </div>
+
+                <div class="button-row">
+                    <a class="button button-outline"
+                       id="mapsButton"
+                       href="#"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        Ver ubicación
+                    </a>
+
+                    <button class="button button-soft"
+                            id="calendarButton"
+                            type="button">
+                        Agregar al calendario
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+        GALERÍA
+        Se genera desde config.multimedia.fotos.
+        =================================================== -->
+
+        <section class="section gallery-section"
+                 id="gallerySection">
+            <div class="container reveal">
+                <div class="section-heading">
+                    <span></span>
+                    <p>GALERÍA</p>
+                    <span></span>
+                </div>
+
+                <!-- app.js insertará aquí las fotografías -->
+                <div class="gallery-grid"
+                     id="galleryGrid"></div>
+
+                <button class="button button-outline"
+                        id="openGallery"
+                        type="button">
+                    Ver galería completa
+                </button>
+            </div>
+        </section>
+
+        <!-- ===================================================
+        VIDEO
+        Puede activarse o desactivarse desde config.js.
+        =================================================== -->
+
+        <section class="section video-section"
+                 id="videoSection">
+            <div class="container narrow reveal">
+                <p class="section-label">
+                    UN MOMENTO ESPECIAL
+                </p>
+
+                <h2>
+                    Conoce un poco de mi historia
+                </h2>
+
+                <div class="video-wrapper">
+                    <video id="eventVideo"
+                           controls
+                           preload="metadata"
+                           playsinline>
+                        <source id="videoSource"
+                                src="assets/video/video.mp4"
+                                type="video/mp4">
+
+                        Tu navegador no puede reproducir este video.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================
+        MESA DE REGALOS
+        Actualmente deshabilitada desde config.js.
+        =================================================== -->
+
+        <section class="section gifts-section"
+                 id="giftsSection">
+            <div class="container reveal">
+                <p class="section-label">
+                    MESA DE REGALOS
+                </p>
+
+                <h2>
+                    Tu presencia es mi mejor regalo
+                </h2>
+
+                <p class="section-description">
+                    Para quienes deseen obsequiarme un detalle,
+                    estas son algunas opciones.
+                </p>
+
+                <!-- app.js insertará aquí las opciones -->
+                <div class="gifts-grid"
+                     id="giftsGrid"></div>
+            </div>
+        </section>
+
+        <!-- =========================================================
+        CONFIRMACIÓN POR WHATSAPP
+
+        Este módulo está incluido en el paquete principal.
+        Funciona independientemente de la lista de asistencia.
+        ========================================================== -->
+
+        <section class="section whatsapp-section"
+                 id="whatsappSection">
+            <div class="container narrow reveal">
+
+                <p class="section-label">
+                    CONFIRMA TU ASISTENCIA
+                </p>
+
+                <p class="section-description">
+                    Presiona el botón para enviar tu confirmación.
+                </p>
+
+                <a class="button whatsapp-button full-width"
+                   id="whatsappButton"
+                   href="#"
+                   target="_blank"
+                   rel="noopener"
+                   aria-label="Confirmar asistencia por WhatsApp">
+                    <!-- Icono oficial con forma de WhatsApp -->
+                    <svg class="whatsapp-icon"
+                         viewBox="0 0 32 32"
+                         aria-hidden="true">
+                        <path fill="currentColor"
+                              d="M16.04 3C8.85 3 3 8.72 3 15.76c0 2.25.6 4.45 1.74 6.37L3 29l7.08-1.8a13.2 13.2 0 0 0 5.95 1.43H16c7.19 0 13.04-5.72 13.04-12.76C29.04 8.72 23.23 3 16.04 3Zm0 23.47h-.01a11 11 0 0 1-5.59-1.5l-.4-.23-4.2 1.07 1.12-4.01-.26-.41a10.51 10.51 0 0 1-1.62-5.63c0-5.85 4.91-10.61 10.96-10.61 2.93 0 5.68 1.12 7.75 3.15a10.42 10.42 0 0 1 3.21 7.51c0 5.85-4.92 10.66-10.96 10.66Zm6.01-7.96c-.33-.16-1.95-.94-2.25-1.05-.3-.11-.52-.16-.74.16-.22.32-.85 1.05-1.04 1.27-.19.21-.38.24-.71.08-.33-.16-1.39-.5-2.65-1.6a9.92 9.92 0 0 1-1.84-2.23c-.19-.32-.02-.5.14-.66.15-.14.33-.37.49-.56.17-.19.22-.32.33-.54.11-.21.05-.4-.03-.56-.08-.16-.74-1.75-1.01-2.39-.27-.63-.54-.54-.74-.55h-.63c-.22 0-.57.08-.87.4-.3.32-1.15 1.1-1.15 2.68s1.18 3.1 1.34 3.32c.17.21 2.32 3.47 5.62 4.86.79.33 1.4.53 1.88.68.79.24 1.5.21 2.07.13.63-.09 1.95-.78 2.23-1.53.27-.75.27-1.39.19-1.53-.08-.13-.3-.21-.63-.37Z" />
+                    </svg>
+
+                    <span>Confirmar asistencia</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ===================================================
+        CONFIRMACIÓN DE ASISTENCIA
+        =================================================== -->
+
+        <section class="section confirmation-section"
+                 id="confirmationSection">
+            <div class="container narrow reveal">
+                <p class="section-label">
+                    CONFIRMA TU ASISTENCIA
+                </p>
+
+                <h2>
+                    Será un honor contar contigo
+                </h2>
+
+                <p class="section-description">
+                    Confirma antes del
+                    <strong id="confirmationDeadline"></strong>.
+                </p>
+
+                <form class="rsvp-form"
+                      id="rsvpForm">
+                    <!-- Nombre del invitado -->
+                    <label for="guestName">
+                        Nombre del invitado o familia
+                    </label>
+
+                    <input type="text"
+                           id="guestName"
+                           name="guestName"
+                           maxlength="120"
+                           autocomplete="name"
+                           required>
+
+                    <!-- Confirmación -->
+                    <label for="attendance">
+                        ¿Asistirás?
+                    </label>
+
+                    <select id="attendance"
+                            name="attendance"
+                            required>
+                        <option value="">
+                            Selecciona una opción
+                        </option>
+
+                        <option value="Sí">
+                            Sí, asistiré
+                        </option>
+
+                        <option value="No">
+                            No podré asistir
+                        </option>
+                    </select>
+
+                    <!-- =======================================================
+                DISTRIBUCIÓN DE ASISTENTES
+                Este bloque aparece solamente cuando el invitado
+                selecciona que sí asistirá.
+                ======================================================== -->
+
+                    <div class="attendees-group" id="companionsGroup" hidden>
+
+                        <!-- Número total de personas que asistirán.
+                     Incluye adultos y niños. -->
+                        <label for="companions">
+                            Asistentes
+                        </label>
+
+                        <select id="companions" name="companions">
+                            <!-- Las opciones se generan automáticamente desde app.js -->
+                        </select>
+
+                        <!-- Distribución de asistentes -->
+                        <div class="attendees-distribution">
+
+                            <!-- El invitado selecciona el número de adultos -->
+                            <label for="adults">
+                                Adultos
+
+                                <select id="adults" name="adults">
+                                    <!-- Las opciones se generan automáticamente desde app.js -->
+                                </select>
+                            </label>
+
+                            <!-- El número de niños se calcula automáticamente -->
+                            <label for="children">
+                                Niños
+
+                                <select id="children" name="children">
+                                    <!-- Las opciones se generan automáticamente desde app.js -->
+                                </select>
+                            </label>
+
+                        </div>
+
+                        <!-- Resumen de la distribución seleccionada -->
+                        <p class="attendees-summary" id="attendeesSummary">
+                            1 adulto y 0 niños
+                        </p>
+
+                    </div>
+                    <br />
+
+                    <button class="button button-primary full-width"
+                            id="rsvpSubmitButton"
+                            type="submit">
+                        Confirmar asistencia
+                    </button>
+                </form>
+
+                <!-- Mensajes de respuesta del formulario -->
+                <p class="form-status"
+                   id="rsvpStatus"
+                   aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- ===================================================
+     LIBRO DE FIRMAS
+     =================================================== -->
+
+        <section class="section guestbook-section"
+                 id="guestbookSection">
+            <div class="container narrow reveal">
+                <p class="section-label">
+                    LIBRO DE FIRMAS DIGITAL
+                </p>
+
+                <h2>
+                    Déjame un mensaje
+                </h2>
+
+                <form class="guestbook-form"
+                      id="guestbookForm">
+                    <!-- Nombre de quien escribe -->
+                    <label for="signatureGuestName">
+                        Tu nombre
+                    </label>
+
+                    <input type="text"
+                           id="signatureGuestName"
+                           name="signatureGuestName"
+                           maxlength="100"
+                           autocomplete="name"
+                           required>
+
+                    <!-- Mensaje para la quinceañera -->
+                    <label for="signatureMessage">
+                        Mensaje para
+                        <span id="guestbookRecipientName">
+                            Kenia
+                        </span>
+                    </label>
+
+                    <textarea id="signatureMessage"
+                              name="signatureMessage"
+                              rows="4"
+                              maxlength="300"
+                              required></textarea>
+
+                    <button class="button button-soft full-width"
+                            id="guestbookSubmitButton"
+                            type="submit">
+                        Enviar felicitación
+                    </button>
+                </form>
+
+                <!-- Respuesta del libro de firmas -->
+                <p class="form-status"
+                   id="guestbookStatus"
+                   aria-live="polite"></p>
+            </div>
+        </section>
+
+        <!-- ===================================================
+     CIERRE
+     =================================================== -->
+
+        <section class="section closing-section">
+            <div class="container narrow reveal">
+                <p class="closing-small">
+                    Gracias por ser parte de
+                </p>
+
+                <h2>
+                    este día tan especial
+                </h2>
+
+                <p class="signature large"
+                   id="closingName">
+                    Kenia
+                </p>
+
+                <div class="closing-sparkle"
+                     aria-hidden="true">
+                    ✦
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+         ===================================================== -->
+
+    <footer>
+        <p>
+            Mis XV
+            <span id="footerName">
+                Kenia
+            </span>
+        </p>
+
+        <span>
+            Invitación digital diseñada por StudioICrea
+        </span>
+    </footer>
+
+    <!-- =====================================================
+         MODAL DE GALERÍA
+         ===================================================== -->
+
+    <div class="gallery-modal"
+         id="galleryModal"
+         aria-hidden="true"
+         role="dialog"
+         aria-modal="true"
+         aria-label="Galería de fotografías">
+        <button class="modal-close"
+                id="closeGallery"
+                type="button"
+                aria-label="Cerrar galería">
+            ×
+        </button>
+
+        <div class="modal-content"
+             id="modalGallery"></div>
+    </div>
+
+    <!-- =====================================================
+         JAVASCRIPT
+         config.js debe cargarse antes que app.js.
+         ===================================================== -->
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Aviso para navegadores con JavaScript desactivado -->
+    <noscript>
+        Esta invitación necesita JavaScript para funcionar correctamente.
+    </noscript>
+</body>
+</html>
