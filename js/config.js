@@ -154,7 +154,7 @@ window.EVENT_CONFIG = {
         mostrarMesaRegalos: false,
 
         /* Adicional: lista almacenada en Google Sheets */
-        mostrarConfirmacion: true,
+        mostrarConfirmacion: false,
 
         /* Incluido: confirmación mediante WhatsApp */
         mostrarWhatsapp: true,
