@@ -92,7 +92,3 @@ La estructura debe conservarse:
 - `css/`
 - `js/`
 - `assets/`
-
-## Recomendación
-
-Mantén el proyecto en modo demostración hasta recibir el anticipo. Para la entrega final, sustituye todos los datos, fotos, video, canción y enlaces por los autorizados por el cliente.
