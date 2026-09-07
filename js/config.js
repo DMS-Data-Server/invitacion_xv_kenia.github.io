@@ -42,10 +42,10 @@ window.EVENT_CONFIG = {
     ---------------------------------------------------------- */
 
     evento: {
-        fechaISO: "2026-10-10T19:00:00-06:00",
+        fechaISO: "2026-10-10T20:00:00-06:00",
         fechaTexto: "11 de octubre de 2026",
         diaTexto: "Domingo",
-        horaTexto: "7:00 p. m.",
+        horaTexto: "8:00 p. m.",
 
         salon: "SANTA MARÍA CENTRO SOCIAL",
 
@@ -93,14 +93,14 @@ window.EVENT_CONFIG = {
 
     regalos: [
         {
-            nombre: "Liverpool",
-            descripcion: "Mesa de regalos del evento",
-            enlace: "#"
+            nombre: "Lluvia de sobres",
+            descripcion: "",
+            enlace: ""
         },
         {
-            nombre: "Lluvia de sobres",
+            nombre: "Regalo",
             descripcion:
-                "También habrá opción de regalo en efectivo.",
+                "",
             enlace: ""
         }
     ],
@@ -148,10 +148,10 @@ window.EVENT_CONFIG = {
     addons: {
         mostrarMusica: true,
         mostrarGaleria: true,
-        mostrarVideo: true,
+        mostrarVideo: false,
 
         // Deshabilitada para este cliente.
-        mostrarMesaRegalos: false,
+        mostrarMesaRegalos: true,
 
         /* Adicional: lista almacenada en Google Sheets */
         mostrarConfirmacion: false,
@@ -159,7 +159,7 @@ window.EVENT_CONFIG = {
         /* Incluido: confirmación mediante WhatsApp */
         mostrarWhatsapp: true,
 
-        mostrarLibroFirmas: true,
+        mostrarLibroFirmas: false,
         mostrarAgregarCalendario: true,
         mostrarConfirmacionAcompanantes: true
     },
