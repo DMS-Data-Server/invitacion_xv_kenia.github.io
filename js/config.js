@@ -42,7 +42,7 @@ window.EVENT_CONFIG = {
     ---------------------------------------------------------- */
 
     evento: {
-        fechaISO: "2026-10-10T20:00:00-06:00",
+        fechaISO: "2026-10-11T20:00:00-06:00",
         fechaTexto: "11 de octubre de 2026",
         diaTexto: "Domingo",
         horaTexto: "8:00 p. m.",
